@@ -25,11 +25,11 @@ const scrapeLogic = async (req, res) => {
 
         await page.setViewport({ width: 1200, height: 800 });
         console.log('Navegador abierto, navegando a la URL...');
-        await page.goto('https://www.suraenlinea.com/soat/sura/seguro-obligatorio', { waitUntil: 'networkidle2', timeout: 60000 });
+        await page.goto('https://www.suraenlinea.com/soat/sura/seguro-obligatorio', { waitUntil: 'networkidle2', timeout: 40000 });
 
         try {
             console.log('Esperando al modal...');
-            await page.waitForSelector('.sura-modal-button', { timeout: 10000 });
+            await page.waitForSelector('.sura-modal-button', { timeout: 5000 });
             console.log('Modal encontrado, cerrándolo...');
             await page.click('.sura-modal-button');
         } catch (error) {
@@ -37,7 +37,7 @@ const scrapeLogic = async (req, res) => {
         }
 
         console.log('Esperando el campo de entrada para la placa...');
-        await page.waitForSelector('#vehiculo-placa input', { visible: true, timeout: 20000 });
+        await page.waitForSelector('#vehiculo-placa input', { visible: true, timeout: 10000 });
 
         console.log('Ingresando la placa en el campo...');
         await page.evaluate((placa) => {
@@ -53,7 +53,7 @@ const scrapeLogic = async (req, res) => {
         await page.waitForTimeout(5000); // Espera de 5 segundos
 
         console.log('Esperando el botón de búsqueda...');
-        await page.waitForSelector('#id-boton-cotizar', { visible: true, timeout: 15000 });
+        await page.waitForSelector('#id-boton-cotizar', { visible: true, timeout: 1000 });
 
         console.log('Verificando si el botón de búsqueda está habilitado...');
         const isButtonEnabled = await page.evaluate(() => {
@@ -77,7 +77,7 @@ const scrapeLogic = async (req, res) => {
         }
 
         console.log('Esperando los resultados...');
-
+        await page.waitForSelector('.vehiculo-summary__value', { visible: false, timeout: 10000 });
         console.log('Extrayendo resultados...');
         const resultados = await page.evaluate(() => {
             const info = {};
