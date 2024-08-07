@@ -75,21 +75,8 @@ const scrapeLogic = async (req, res) => {
           return res.status(500).send('El botón de búsqueda está deshabilitado.');
       }
 
-      // Espera con reintentos para el selector de resultados
-      const waitForElementWithRetry = async (page, selector, retries = 3, timeout = 60000) => {
-          for (let i = 0; i < retries; i++) {
-              try {
-                  await page.waitForSelector(selector, { visible: true, timeout });
-                  return;
-              } catch (error) {
-                  console.log(`Intento ${i + 1} fallido, reintentando...`);
-                  if (i === retries - 1) throw error;
-              }
-          }
-      };
-
       console.log('Esperando los resultados...');
-      await waitForElementWithRetry(page, '.vehiculo-summary__value');
+      await page.waitForSelector('.vehiculo-summary__value', { visible: true, timeout: 30000 });
 
       console.log('Extrayendo resultados...');
       const resultados = await page.evaluate(() => {
@@ -139,7 +126,7 @@ const scrapeLogic = async (req, res) => {
 
   } catch (error) {
       console.error('Error en el scraping:', error);
-      res.status(500).send(`Error en el scraping: ${error.message}`);
+      res.status(500).send(Error en el scraping: ${error.message});
   }
 };
 
