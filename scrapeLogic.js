@@ -77,7 +77,6 @@ const scrapeLogic = async (req, res) => {
         }
 
         console.log('Esperando los resultados...');
-        await page.waitForSelector('.vehiculo-summary__value', { visible: true, timeout: 50000 });
 
         console.log('Extrayendo resultados...');
         const resultados = await page.evaluate(() => {
