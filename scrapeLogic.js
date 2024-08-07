@@ -49,6 +49,7 @@ const scrapeLogic = async (req, res) => {
             }
         }, placa);
 
+        // Espera adicional para asegurar que el botón se habilite
         await page.waitForTimeout(5000); // Espera de 5 segundos
 
         console.log('Esperando el botón de búsqueda...');
@@ -76,7 +77,7 @@ const scrapeLogic = async (req, res) => {
         }
 
         console.log('Esperando los resultados...');
-        await page.waitForSelector('.vehiculo-summary__value', { visible: true, timeout: 30000 });
+        await page.waitForSelector('.vehiculo-summary__value', { visible: true, timeout: 50000 });
 
         console.log('Extrayendo resultados...');
         const resultados = await page.evaluate(() => {
