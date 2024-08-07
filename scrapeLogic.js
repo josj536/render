@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
-const puppeteer = require('puppeteer');
 
 const scrapeLogic = async (req, res) => {
   const placa = req.headers['x-placa'];
