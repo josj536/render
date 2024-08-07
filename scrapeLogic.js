@@ -86,36 +86,6 @@ const scrapeLogic = async (req, res) => {
             const marcaElement = document.querySelector('#vehiculo-detail-marca');
             info.marca = marcaElement ? marcaElement.innerText : 'No se encontró la marca';
 
-            const lineaElement = document.querySelector('#vehiculo-detail-linea');
-            info.linea = lineaElement ? lineaElement.innerText : 'No se encontró la línea';
-
-            const modeloElement = document.querySelector('#vehiculo-detail-model');
-            info.modelo = modeloElement ? modeloElement.innerText : 'No se encontró el modelo';
-
-            const tipoServicioElement = document.querySelector('#vehiculo-detail-servicio');
-            info.tipoServicio = tipoServicioElement ? tipoServicioElement.innerText : 'No se encontró el tipo de servicio';
-
-            const claseElement = document.querySelector('#vehiculo-detail-clase');
-            info.clase = claseElement ? claseElement.innerText : 'No se encontró la clase';
-
-            const cilindrajeElement = document.querySelector('#vehiculo-detail-cilindraje');
-            info.cilindraje = cilindrajeElement ? cilindrajeElement.innerText : 'No se encontró el cilindraje';
-
-            const numeroMotorElement = document.querySelector('#vehiculo-detail-motor');
-            info.numeroMotor = numeroMotorElement ? numeroMotorElement.innerText : 'No se encontró el número de motor';
-
-            const pasajerosElement = document.querySelector('#vehiculo-detail-pasajeros');
-            info.pasajeros = pasajerosElement ? pasajerosElement.innerText : 'No se encontró el número de pasajeros';
-
-            const tipoCombustibleElement = document.querySelector('#vehiculo-detail-combustible');
-            info.tipoCombustible = tipoCombustibleElement ? tipoCombustibleElement.innerText : 'No se encontró el tipo de combustible';
-
-            const vinElement = document.querySelector('#vehiculo-detail-vin');
-            info.vin = vinElement ? vinElement.innerText : 'No se encontró el VIN';
-
-            const valorPagarElement = document.querySelector('.descuentos__total-price p:nth-of-type(2)');
-            info.valorPagar = valorPagarElement ? valorPagarElement.innerText.trim() : 'No se encontró el valor a pagar';
-
             return info;
         });
 
